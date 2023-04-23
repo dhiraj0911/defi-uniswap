@@ -11,7 +11,7 @@ import { SwapTokenContext } from "../../Context/SwapContext";
 
 function NavBar() {
   const { ether,  networkConnect, connectWallet, account, tokenData} = useContext(SwapTokenContext);
-  console.log(tokenData);
+  // console.log(tokenData);
   const menuItems = [
     {
       name: "Swap",
@@ -29,8 +29,7 @@ function NavBar() {
   //usestate
   const [openModel, setOpenModel] = useState(false);
   const [openTokenBox, setOpenTokenBox] = useState(false);
-  // const [account, setAccount] = useState(true);
-  console.log(tokenData);
+
   return (
     <div className={Style.NavBar}>
       <div className={Style.NavBar_box}>
@@ -82,10 +81,10 @@ function NavBar() {
         </div>
       </div>
       {/* Token List */}
-      {/* {openTokenBox && (
-        <TokenList tokenData={tokenData} setOpenTokenBox={setOpenTokenBox} />
-      )} */}
-      {openTokenBox && tokenData && (<TokenList tokenDate={tokenData} setOpenTokenBox={setOpenTokenBox} />)}
+      {openTokenBox && (
+        <TokenList tokenDate={tokenData} setOpenTokenBox={setOpenTokenBox} />
+      )}
+      {/* {openTokenBox && tokenData && (<TokenList tokenDate={tokenData} setOpenTokenBox={setOpenTokenBox} />)} */}
     </div>
   )
 }

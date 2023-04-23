@@ -3,11 +3,15 @@ import Image from 'next/image';
 import Style from './HeroSection.module.css';
 import {Token, SearchToken} from '../index';
 import images from '../../assets';
+import { SwapTokenContext } from "../../Context/SwapContext";
 
-function HeroSection({accounts, tokenData}) {
+
+function HeroSection({tokenData}) {
   const [openSetting, setOpenSetting] = useState(false);
   const [isOpenToken, setIsOpenToken] = useState(false); // rename openToken to isOpenToken
   const [openTokensTwo, setOpenTokensTwo] = useState(false);
+
+  const { singleSwapToken, connectWallet, account, weth9, dai, ether} = useContext(SwapTokenContext);
 
   //Token 1
   const [tokenOne, setTokenOne] = useState({
@@ -33,7 +37,7 @@ function HeroSection({accounts, tokenData}) {
           <button onClick={() => setIsOpenToken(true)}> {/* update openToken to setIsOpenToken */}
             <Image src={images.image || images.etherlogo} alt="ether" width={20} height={20} />
             {tokenOne.name || "ETH"}
-            <small>3521</small>
+            <small>{ether.slice(0, 7)}</small>
           </button>
         </div>
 
@@ -42,15 +46,23 @@ function HeroSection({accounts, tokenData}) {
           <button onClick={() => setOpenTokensTwo(true)}> {/* update openToken to setOpenTokensTwo */}
             <Image src={tokenTwo.image || images.etherlogo} alt="ether" width={20} height={20} />
             {tokenTwo .name || "ETH"}
-            <small>3521</small>
+            <small>{dai.slice(0, 7)}</small>
           </button>
         </div>
-        {accounts ? (
-          <button className={Style.HeroSection_box_btn}>Connect Wallet</button>
-        ) : (
-          <button className={Style.HeroSection_box_btn} onClick={() => {}}>
+        {account ? (
+          <button 
+            className={Style.HeroSection_box_btn}
+            onClick={() => singleSwapToken()}
+          >
             Swap
           </button>
+        ) : (
+          <button 
+            onClickCapture={() => connectWallet()}
+            className={Style.HeroSection_box_btn}
+          >
+              Connect Wallet
+        </button>
         )}
       </div>
       {openSetting && 

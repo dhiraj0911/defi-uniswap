@@ -14,8 +14,7 @@ export const LifeTokenAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
 export const LifeTokenABI = lifeToken.abi;
 
 //SINGLE SWAP TOKEN
-export const SingleSwapTokenAddress =
-  "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
+export const SingleSwapTokenAddress = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
 export const SingleSwapTokenABI = singleSwapToken.abi;
 
 // SWAP MULTIHOP
@@ -31,3 +30,8 @@ export const IWETHABI = IWETH.abi;
 // export const userStorageDataAddrss =
 //   "0xFCFE742e19790Dd67a627875ef8b45F17DB1DaC6";
 // export const userStorageDataABI = userStorgeData.abi;
+
+// BOO deployed to 0x5FbDB2315678afecb367f032d93F642f64180aa3
+// Life deployed to 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+// SingleSwapToken deployed to 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0
+// swapMultiHop deployed to 0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9

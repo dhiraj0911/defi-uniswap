@@ -5,7 +5,7 @@ import images from '../../assets';
 
 function Token({tokenDate, setOpenTokenBox}) {
   // const data = [1, 2, 3, 4, 5, 6, 7];
-  // console.log(tokenDate);
+  console.log(tokenDate);
   let tokenList = [];
   for(let i = 0; i < tokenDate.length; i++) {
     if(i % 2 == 1) tokenList.push(tokenDate[i]);
@@ -27,7 +27,7 @@ function Token({tokenDate, setOpenTokenBox}) {
               {el.name}
             </p>
             <p>
-              <span>1</span> {el.symbol}
+              <span>{el.tokenBalance}   </span> {el.symbol}
             </p>
           </div>
         </div>
