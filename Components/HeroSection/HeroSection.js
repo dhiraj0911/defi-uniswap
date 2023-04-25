@@ -46,7 +46,7 @@ function HeroSection({tokenData}) {
           <button onClick={() => setOpenTokensTwo(true)}> {/* update openToken to setOpenTokensTwo */}
             <Image src={tokenTwo.image || images.etherlogo} alt="ether" width={20} height={20} />
             {tokenTwo.name || "ETH"}
-            <small>{dai}</small>
+            <small>{dai.slice(0, 7) || "0.0"}</small>
           </button>
         </div>
         {account ? (

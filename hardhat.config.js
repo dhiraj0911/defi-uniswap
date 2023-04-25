@@ -4,11 +4,10 @@ require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.18",
   networks: {
-    forking: {
-      url: "https://eth-goerli.g.alchemy.com/v2/GisqWtouBka7C7x7SPYCLXMzR0yvxJF3"
-    },
     hardhat: {
-
+      forking: {
+        url: "https://eth-mainnet.alchemyapi.io/v2/db3BCFYSHgpg1hiuWyFjw1vdGNADl0zj",
+      },
     },
   }
 };

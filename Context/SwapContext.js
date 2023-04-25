@@ -34,8 +34,8 @@ export const SwapTokenContextProvider = ({ children }) => {
   const [topTokensList, setTopTokensList] = useState([]);
 
   const addToken = [
-    "0x5FbDB2315678afecb367f032d93F642f64180aa3",
-    "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+    "0xc0c5618f0F3Fa66b496F2940f373DC366d765BAe",
+    "0xa195ACcEB1945163160CD5703Ed43E4f78176a54"
   ];
 
   //FETCH DATA
@@ -105,9 +105,7 @@ export const SwapTokenContextProvider = ({ children }) => {
       console.log("Approved");
 
       //swap
-      await singleSwapToken.swapExactInputSingle(amountIn, {
-        gasLimit: 300000,
-      });
+      await singleSwapToken.swapExactInputSingle(amountIn);
       console.log("swapping done");
       
       const balance = await dai.balanceOf(account);
