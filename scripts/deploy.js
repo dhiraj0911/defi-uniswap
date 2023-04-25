@@ -1,9 +1,7 @@
 const hre = require("hardhat");
-//import ISwapRouterAddress
-// const ISwapRouterAddress = "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506";
 
 async function main() {
-  // ERC20 BOO TOKEN
+  //ERC20 BOO TOKEN
   const BooToken = await hre.ethers.getContractFactory("BooToken");
   const booToken = await BooToken.deploy();
   await booToken.deployed();
@@ -13,10 +11,12 @@ async function main() {
   const LifeToken = await hre.ethers.getContractFactory("LifeToken");
   const lifeToken = await LifeToken.deploy();
   await lifeToken.deployed();
-  console.log(`Life deployed to ${lifeToken.address}`);
+  console.log(`LIfe deployed to ${lifeToken.address}`);
 
   //SingleSwapToken
-  const SingleSwapToken = await hre.ethers.getContractFactory("SingleSwapToken");
+  const SingleSwapToken = await hre.ethers.getContractFactory(
+    "SingleSwapToken"
+  );
   const singleSwapToken = await SingleSwapToken.deploy();
   await singleSwapToken.deployed();
   console.log(`SingleSwapToken deployed to ${singleSwapToken.address}`);
@@ -27,11 +27,13 @@ async function main() {
   await swapMultiHop.deployed();
   console.log(`swapMultiHop deployed to ${swapMultiHop.address}`);
 
-  //IWETH
-  // const IWETH = await hre.ethers.getContractFactory("IWETH");
-  // const iWETH = await IWETH.deploy();
-  // await iWETH.deployed();
-  // console.log(`IWETH deployed to ${iWETH.address}`);
+  //USER DATA CONTRACT
+  // const UserStorageData = await hre.ethers.getContractFactory(
+  //   "UserStorageData"
+  // );
+  // const userStorageData = await UserStorageData.deploy();
+  // await userStorageData.deployed();
+  // console.log(`UserStorageData deployed to ${userStorageData.address}`);
 }
 
 main().catch((error) => {

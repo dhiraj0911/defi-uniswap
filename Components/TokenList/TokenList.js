@@ -3,9 +3,8 @@ import Image from 'next/image';
 import Style from './TokenList.module.css';
 import images from '../../assets';
 
-function Token({tokenDate, setOpenTokenBox}) {
-  // const data = [1, 2, 3, 4, 5, 6, 7];
-  console.log(tokenDate);
+function Token({tokenDate, setOpenTokenBox}) {  
+  // console.log(tokenDate);
   let tokenList = [];
   for(let i = 0; i < tokenDate.length; i++) {
     if(i % 2 == 1) tokenList.push(tokenDate[i]);

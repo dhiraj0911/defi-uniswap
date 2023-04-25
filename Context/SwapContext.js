@@ -91,20 +91,24 @@ export const SwapTokenContextProvider = ({ children }) => {
       let singleSwapToken;
       let weth;
       let dai;
-
       singleSwapToken = await connectingWithSingleSwapToken();
       weth = await connectingWithIWTHToken();
       dai = await connectingWithDAIToken();
 
       const amountIn = 10n ** 18n; // 1 WETH
-
+      // deposit 1 ether
       await weth.deposit({ value: amountIn});
+      console.log("ether deposited");
+
+      //approve 1 ether to singleSwapToken contract to spend weth token on behalf of user
       await weth.approve(singleSwapToken.address, amountIn);
+      console.log("Approved");
 
       //swap
       await singleSwapToken.swapExactInputSingle(amountIn, {
         gasLimit: 300000,
       });
+      console.log("swapping done");
       
       const balance = await dai.balanceOf(account);
       const transferAmount = BigNumber.from(balance).toString();
@@ -113,10 +117,9 @@ export const SwapTokenContextProvider = ({ children }) => {
       console.log("Dai balance: ", ethValue);
 
     } catch (error) {
-      conslog.log(error) 
+      console.log(error) 
     }
   };
-
 
   return (
     <SwapTokenContext.Provider

@@ -45,8 +45,8 @@ function HeroSection({tokenData}) {
           <input type="text" placeholder="0"/>
           <button onClick={() => setOpenTokensTwo(true)}> {/* update openToken to setOpenTokensTwo */}
             <Image src={tokenTwo.image || images.etherlogo} alt="ether" width={20} height={20} />
-            {tokenTwo .name || "ETH"}
-            <small>{dai.slice(0, 7)}</small>
+            {tokenTwo.name || "ETH"}
+            <small>{dai}</small>
           </button>
         </div>
         {account ? (
@@ -61,7 +61,7 @@ function HeroSection({tokenData}) {
             onClickCapture={() => connectWallet()}
             className={Style.HeroSection_box_btn}
           >
-              Connect Wallet
+            Connect Wallet
         </button>
         )}
       </div>
