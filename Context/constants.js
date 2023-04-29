@@ -5,19 +5,19 @@ import swapMultiHop from "./SwapMultiHop.json";
 import IWETH from "./IWETH.json";
 
 //BOOTOKEN
-export const BooTokenAddress = "0xc0c5618f0F3Fa66b496F2940f373DC366d765BAe";
+export const BooTokenAddress = "0x44863F234b137A395e5c98359d16057A9A1fAc55";
 export const BooTokenABI = booToken.abi;
 
 //LIFE TOken
-export const LifeTokenAddress = "0xa195ACcEB1945163160CD5703Ed43E4f78176a54";
+export const LifeTokenAddress = "0x0c03eCB91Cb50835e560a7D52190EB1a5ffba797";
 export const LifeTokenABI = lifeToken.abi;
 
 //SINGLE SWAP TOKEN
-export const SingleSwapTokenAddress = "0x6212cb549De37c25071cF506aB7E115D140D9e42";
+export const SingleSwapTokenAddress = "0x1c39BA375faB6a9f6E0c01B9F49d488e101C2011";
 export const SingleSwapTokenABI = singleSwapToken.abi;
 
 // SWAP MULTIHOP
-export const SwapMultiHopAddress = "0x6F9679BdF5F180a139d01c598839a5df4860431b";
+export const SwapMultiHopAddress = "0xb04CB6c52E73CF3e2753776030CE85a36549c9C2";
 export const SwapMultiHopABI = swapMultiHop.abi;
 
 //IWETH

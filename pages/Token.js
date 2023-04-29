@@ -3,7 +3,8 @@ import Image from "next/image";
 
 import Style from "../styles/Token.module.css";
 import images from "../assets";
-import {AllTokens} from "../components/AllTokens";
+// import {AllTokens} from "../components/AllTokens";
+import {AllTokens} from "../components/index";
 
 
 const Tokens = () => {
@@ -79,7 +80,7 @@ const Tokens = () => {
             <div className={Style.Tokens_box}>
                 <h2>Top tokens on Uniswap</h2>
                 <div className={Style.Tokens_box_header}>
-                    <div className={Style.Tokes_box_ethereum}>
+                <div className={Style.Tokes_box_ethereum} style={{ display: 'flex', flexDirection: 'row' }}>
                         <p>
                             <Image
                                 src={images.etherlogo}
@@ -88,19 +89,20 @@ const Tokens = () => {
                                 height={20}
                             />
                         </p>               
-                        <p>Ethereum</p>         
-                    </div>    
-                    <div className={Style.Token_box_search}>
-                        <p>
-                            <Image src={images.search} alt='image' width={20} height={20} />
-                        </p>
-                        <input
-                            type="text"
-                            placeholder='Filter Tokens'
-                            onChange={(e) => setSearchItem(e.target.value)}
-                            value={searchItem}
-                        />
-                    </div>                
+                        <p>Ethereum</p>     
+                    </div>  
+                    <div className={Style.Token_box_search} style={{ display: 'flex', flexDirection: 'row' }}>
+                            <p>
+                                <Image src={images.search} alt='image' width={20} height={20} />
+                                <input
+                                    type="text"
+                                    placeholder='Filter Tokens'
+                                    onChange={(e) => setSearchItem(e.target.value)}
+                                    value={searchItem}
+                                />
+                            </p>
+                            
+                        </div>         
                 </div>
                 <AllTokens allTokenList={allTokenList} />
             </div>
