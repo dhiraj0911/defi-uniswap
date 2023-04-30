@@ -20,7 +20,7 @@ function NavBar() {
     {
       name: "Token",
       link: '/'
-    }, 
+    },
     {
       name: "Pool",
       link: '/' 
@@ -43,9 +43,9 @@ function NavBar() {
             {menuItems.map((el, i) => (
               <Link
                 key= {i + 1} 
-                href={{pathname: `${el.name}`, query: `${el.link}`}}
+                href={{pathname: `${el.name}`}}
               >
-                  <p className={Style.NavBar_box_left_menu_item}>{el.name}</p>
+                <p className={Style.NavBar_box_left_menu_item}>{el.name}</p>
               </Link>
             ))}
           </div>

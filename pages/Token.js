@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import Style from "../styles/Token.module.css";
 import images from "../assets";
-// import {AllTokens} from "../components/AllTokens";
 import {AllTokens} from "../components/index";
 
 
@@ -14,42 +13,53 @@ const Tokens = () => {
             image: images.etherlogo,
             name: 'Ether',
             symbol: 'ETH',
-            price: '1,000,000',
-            change: '0.00',
-            tvl: '0.00',
-            volume: '0.00',
+            price: '$12,423',
+            change: '+323',
+            tvl: '$12B',
+            volume: '$322M',
         },
         {
             number: 2,
             image: images.etherlogo,
+            name: 'Wrapped ETH',
+            symbol: 'WETH',
+            price: '1,000',
+            change: '+21412',
+            tvl: '-32',
+            volume: '342',
+        },
+        {
+            number: 3,
+            image: images.etherlogo,
             name: 'Wrapped BTC',
-            symbol: 'ETH',
+            symbol: 'WBTC',
             price: '1,000',
             change: '+21412',
             tvl: '0.00',
             volume: '0.00',
         },
         {
-            number: 3,
+            number: 4,
             image: images.etherlogo,
-            name: 'Wrapped BTC',
-            symbol: 'ETH',
+            name: 'USD Coin',
+            symbol: 'USDC',
             price: '1,000',
             change: '+21412',
             tvl: '0.00',
             volume: '0.00',
         },
     ]);
+
     const [copyAllTokenList, setCopyAllTokenList] = useState(allTokenList);
     const [search, setSearch] = useState("");
     const [searchItem, setSearchItem] = useState(search);
 
     const onHandleSearch = (value) => {
-        const filteredTokens = allTokenList.filter(({name}) => {
-            name.toLowerCase().includes(value.toLowerCase());
-        });
+        const filteredTokens = allTokenList.filter(({name}) => 
+            name.toLowerCase().includes(value.toLowerCase())
+        );
 
-        if(filteredTokens.length() === 0) {
+        if(filteredTokens.length === 0) {
             setAllTokenList(copyAllTokenList);
         } else {
             setAllTokenList(filteredTokens);
@@ -80,7 +90,7 @@ const Tokens = () => {
             <div className={Style.Tokens_box}>
                 <h2>Top tokens on Uniswap</h2>
                 <div className={Style.Tokens_box_header}>
-                <div className={Style.Tokes_box_ethereum} style={{ display: 'flex', flexDirection: 'row' }}>
+                    <div className={Style.Tokes_box_ethereum} style={{ display: 'flex', flexDirection: 'row' }}>
                         <p>
                             <Image
                                 src={images.etherlogo}
@@ -90,19 +100,18 @@ const Tokens = () => {
                             />
                         </p>               
                         <p>Ethereum</p>     
-                    </div>  
+                    </div>
                     <div className={Style.Token_box_search} style={{ display: 'flex', flexDirection: 'row' }}>
-                            <p>
-                                <Image src={images.search} alt='image' width={20} height={20} />
-                                <input
-                                    type="text"
-                                    placeholder='Filter Tokens'
-                                    onChange={(e) => setSearchItem(e.target.value)}
-                                    value={searchItem}
-                                />
-                            </p>
-                            
-                        </div>         
+                        <p>
+                            <Image src={images.search} alt='image' width={20} height={20} />
+                        </p>
+                        <input
+                            type="text"
+                            placeholder='Filter Tokens'
+                            onChange={(e) => setSearchItem(e.target.value)}
+                            value={searchItem}
+                        />    
+                    </div>         
                 </div>
                 <AllTokens allTokenList={allTokenList} />
             </div>

@@ -7,6 +7,11 @@ import close from "./cross.png";
 import etherlogo from "./etherlogo.png";
 import homeicon from "./homeicon.png";
 import lock from "./lock.png";
+// import question from "./question.png";
+// import arrowPrice from "./arrowPrice.png";
+// import wallet from "./wallet.png";
+// import arrowLeft from "./arrowLeft.png";
+// import tick from "./tick.png";
 
 export default {
   uniswap,
