@@ -7,11 +7,12 @@ import close from "./cross.png";
 import etherlogo from "./etherlogo.png";
 import homeicon from "./homeicon.png";
 import lock from "./lock.png";
-// import question from "./question.png";
-// import arrowPrice from "./arrowPrice.png";
-// import wallet from "./wallet.png";
-// import arrowLeft from "./arrowLeft.png";
-// import tick from "./tick.png";
+import question from "./question.jpg";
+import arrowPrice from "./arrowPrice.jpg";
+import wallet from "./wallet.png";
+import arrowLeft from "./arrowLeft.png";
+import tick from "./tick.png";
+import loading from "./loading.gif";
 
 export default {
   uniswap,
@@ -23,4 +24,11 @@ export default {
   etherlogo,
   homeicon,
   lock,
+  // question,
+  // arrowPrice,
+  // wallet,
+  // arrowLeft,
+  // tick,
+  loading,
 };
+

@@ -1,6 +1,7 @@
 import { AlphaRouter } from "@uniswap/smart-order-router";
-import { ethers } from "ethers";
-import {Token, CurrencyAmount, Trade, Route, TradeType, Percent} from "@uniswap/sdk";
+import { ethers } from 'ethers';
+console.log(ethers.parseUnits);
+import {Token, CurrencyAmount, Trade, Route, TradeType, Percent} from "@uniswap/sdk-core";
 import BigNumber from "big-number/big-number";
 
 const V3_SWAP_ROUTER_ADDRESS = "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45";
@@ -33,7 +34,8 @@ export const swapUpdatePrice = async (
     walletAddress,
 ) => {
     const percentSlippage = new Percent(slippageAmount, 100);
-    const wei = ethers.parseUnits(inputAmount.toString(), decimals0);
+    // console.log(ethers);
+    const wei = ethers.parseUnits(inputAmount, decimals0);
     const currencyAmount = CurrencyAmount.fromRawAmount(
         WETH,
         BigNumber.from(wei)
