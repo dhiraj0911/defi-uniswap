@@ -154,6 +154,8 @@ export const SwapTokenContextProvider = ({ children }) => {
       value={{
         singleSwapToken,
         connectWallet,
+        getPrice,
+        swapUpdatePrice,
         account,
         tokenData,
         networkConnect,

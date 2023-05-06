@@ -22,10 +22,10 @@ async function main() {
   console.log(`SingleSwapToken deployed to ${singleSwapToken.address}`);
 
   //SwapMultiHop
-  const SwapMultiHop = await hre.ethers.getContractFactory("SwapMultiHop");
-  const swapMultiHop = await SwapMultiHop.deploy();
-  await swapMultiHop.deployed();
-  console.log(`swapMultiHop deployed to ${swapMultiHop.address}`);
+  // const SwapMultiHop = await hre.ethers.getContractFactory("SwapMultiHop");
+  // const swapMultiHop = await SwapMultiHop.deploy();
+  // await swapMultiHop.deployed();
+  // console.log(`swapMultiHop deployed to ${swapMultiHop.address}`);
 
   //USER DATA CONTRACT
   // const UserStorageData = await hre.ethers.getContractFactory(

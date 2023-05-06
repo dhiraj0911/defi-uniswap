@@ -6,23 +6,34 @@ import images from '../../assets';
 import { SwapTokenContext } from "../../Context/SwapContext";
 
 
-function HeroSection({tokenData}) {
+function HeroSection({}) {
   const [openSetting, setOpenSetting] = useState(false);
   const [isOpenToken, setIsOpenToken] = useState(false); // rename openToken to isOpenToken
   const [openTokensTwo, setOpenTokensTwo] = useState(false);
 
-  const { singleSwapToken, connectWallet, account, weth9, dai, ether} = useContext(SwapTokenContext);
+  const { singleSwapToken, connectWallet, account, weth9, dai, ether, tokenData, getPrice, swapUpdatePrice} = useContext(SwapTokenContext);
 
   //Token 1
   const [tokenOne, setTokenOne] = useState({
     name: "",
     image:"",
-  })
+    symbol: "",
+    tokenBalance: "",
+    tokenAddress: "",
+  });
   //Token 2
   const [tokenTwo, setTokenTwo] = useState({
     name: "",
     image:"",
-  })
+    symbol: "",
+    tokenBalance: "",
+    tokenAddress: "",
+  });
+
+  // const callOutPut = async(value) => {
+  //   const yousAccount
+  // }
+
   return (
     <div className={Style.HeroSection}>
       <div className={Style.HeroSection_box}>

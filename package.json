@@ -11,6 +11,7 @@
   "dependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
     "@openzeppelin/contracts": "^3.4.2",
+    "@uniswap/sdk": "^3.0.3",
     "@uniswap/smart-order-router": "^3.11.2",
     "@uniswap/v3-periphery": "^1.4.3",
     "axios": "^1.4.0",
