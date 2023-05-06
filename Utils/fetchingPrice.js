@@ -39,4 +39,23 @@ export const getPrice = async(inputAmount, poolAddress) => {
 
     const tokenDecimals0 = await tokenContract0.decimals();
     const tokenDecimals1 = await tokenContract1.decimals();
-}
+
+    const quoterContract = new ethers.Contract(qutorAddress, QuoterABI, provider);
+
+    const immutables = await getPoolImmutables(poolContract);
+    const amountIn = ethers.utils.parseUnits(
+        inputAmount.toString(),
+        tokenDecimals0
+    );
+    const quotedAmount = await quoterContract.callStatic.quoteExactInputSingle(
+        immutables.token0,
+        immutables.token1,
+        immutables.fee,
+        amountIn,
+        0,
+    );
+
+    const amountOut = ethers.utils.formatUnits(quotedAmount, tokenDecimals1);
+
+    return [amountOut, tokenSymbol0, tokenSymbol1];
+};
