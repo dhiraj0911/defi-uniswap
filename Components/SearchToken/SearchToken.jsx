@@ -67,7 +67,7 @@ function SearchToken({openToken, tokens, tokenData}) {
               className={active == i + 1 ? `${Style.active}`: ""}
               onClick={() => (
                 setActive(i + 1), tokens({
-                  name: el.name, 
+                  name: el.name,
                   image: el.img, 
                   symbol: el.symbol,
                   tokenBalance: el.tokenBalance,

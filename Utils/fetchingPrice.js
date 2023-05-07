@@ -12,7 +12,12 @@ const {getAbi, getPoolImmutables} = require('./priceHelpers');
 
 const MAINNET_URL = "https://eth-mainnet.alchemyapi.io/v2/db3BCFYSHgpg1hiuWyFjw1vdGNADl0zj";
 
-const provider = new ethers.providers.JsonRpcProvider(MAINNET_URL);
+// const provider = new ethers.providers.JsonRpcProvider(MAINNET_URL);
+// const provider = ethers.getDefaultProvider('homestead', { etherscan: '5UPBS43AIM7D3IUW6C5PXPUKBJ1FKYYJA9' });
+
+const provider = new ethers.providers.JsonRpcProvider(
+    "https://eth-mainnet.alchemyapi.io/v2/db3BCFYSHgpg1hiuWyFjw1vdGNADl0zj"
+);
 
 const qutorAddress = "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6";
 
@@ -27,11 +32,15 @@ export const getPrice = async(inputAmount, poolAddress) => {
     const tokenAddress1 = await poolContract.token1();
 
     console.log(tokenAddress0, tokenAddress1);
+    
 
-    const tokenAbi0 = getAbi(tokenAddress0);
-    const tokenAbi1 = getAbi(tokenAddress1);
+    const tokenAbi0 = await getAbi(tokenAddress0);
+    const tokenAbi1 = await getAbi(tokenAddress1);
+
+    // console.log(tokenAbi0, tokenAbi1);
 
     const tokenContract0 = new ethers.Contract(tokenAddress0, tokenAbi0, provider);
+
     const tokenContract1 = new ethers.Contract(tokenAddress1, tokenAbi1, provider);
 
     const tokenSymbol0 = await tokenContract0.symbol();

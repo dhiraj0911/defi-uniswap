@@ -1,6 +1,6 @@
 import { AlphaRouter } from "@uniswap/smart-order-router";
 import { ethers } from 'ethers';
-console.log(ethers.parseUnits);
+import { parseUnits } from 'ethers/lib/utils'
 import {Token, CurrencyAmount, Trade, Route, TradeType, Percent} from "@uniswap/sdk-core";
 import BigNumber from "big-number/big-number";
 
@@ -34,11 +34,12 @@ export const swapUpdatePrice = async (
     walletAddress,
 ) => {
     const percentSlippage = new Percent(slippageAmount, 100);
-    // console.log(ethers);
-    const wei = ethers.parseUnits(inputAmount, decimals0);
+    
+    const wei = parseUnits(inputAmount, decimals0);
+    // const wei = ethers.parseUnits(inputAmount, decimals0);
     const currencyAmount = CurrencyAmount.fromRawAmount(
         WETH,
-        BigNumber.from(wei)
+        BigNumber(wei.toString())
     );
     
     const route = await router.route(currencyAmount, DAI, TradeType.EXACT_INPUT, {
@@ -50,9 +51,10 @@ export const swapUpdatePrice = async (
     const transaction = {
         data: route.methodParameters.calldata,
         to: V3_SWAP_ROUTER_ADDRESS,
-        value: BigNumber.from(route.methodParameters.value),
+        // value: BigNumber.from(route.methodParameters.value),
+        value: BigNumber(route.methodParameters.value.toString()),
         from: walletAddress,
-        gasPrice: BigNumber.from(route.gasPriceWei),
+        gasPrice: BigNumber(route.gasPriceWei.toString()),
         gasLimit: ethers.utils.hexlify(1000000),
     }
     const quoteAmountOut = route.quote.toFixed(6);

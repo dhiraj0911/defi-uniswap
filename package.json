@@ -16,7 +16,6 @@
     "@uniswap/v3-periphery": "^1.4.3",
     "axios": "^1.4.0",
     "big-number": "^2.0.0",
-    "ethers": "^6.3.0",
     "next": "13.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -24,6 +23,9 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "chai": "^4.2.0",
+    "ethers": "^5.7.2",
     "hardhat": "^2.13.0"
   }
 }

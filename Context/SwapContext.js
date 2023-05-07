@@ -40,15 +40,14 @@ export const SwapTokenContextProvider = ({ children }) => {
   const addToken = [
     // "0x44863F234b137A395e5c98359d16057A9A1fAc55",
     // "0x0c03eCB91Cb50835e560a7D52190EB1a5ffba797"
-    "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
-    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-    "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
     "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-    "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
+    "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
     "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
     "0x514910771AF9Ca656af840dff83E8264EcF986CA",
-    "0x68749665FF8D2d112Fa859AA293F07A622782F38",
-    "0xc944E90C64B2c07662A292be6244BDf05Cda44a7"
+    "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
   ];
 
   //FETCH DATA
@@ -100,7 +99,9 @@ export const SwapTokenContextProvider = ({ children }) => {
 
   //Single Swap Token
   const singleSwapToken = async({token1, token2, swapAmount}) => {
-    console.log(token1.tokenAddress.tokenAddress, token2.tokenAddress.tokenAddress, swapAmount);
+    console.log(token1.tokenAddress, token2.tokenAddress, swapAmount);
+    // console.log(token1, token2, swapAmount);
+    
     try {
       let singleSwapToken;
       let weth;
@@ -130,12 +131,12 @@ export const SwapTokenContextProvider = ({ children }) => {
       //swap
       const transaction =  await singleSwapToken.swapExactInputSingle(
         token1.tokenAddress.tokenAddress, 
-        token2.tokenAddress.tokenAddress, 
+        token2.tokenAddress.tokenAddress,
         amountIn, {
           gasLimit: 300000,
         }
       );
-      await transaction.waith();
+      await transaction.wait();
       console.log(transaction);
       
       const balance = await dai.balanceOf(account);
