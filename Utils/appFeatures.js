@@ -275,7 +275,7 @@ export const connectingWithIWTHToken = async () => {
 //FETCHING CONTRACT------------------------
 
 //DAI TOKEN FETCHING
-const DAIAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+const DAIAddress = "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984";
 export const fetchDAIContract = (signerOrProvider) =>
   new ethers.Contract(DAIAddress, IWETHABI, signerOrProvider);
 

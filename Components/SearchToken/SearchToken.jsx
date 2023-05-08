@@ -59,19 +59,21 @@ function SearchToken({openToken, tokens, tokenData}) {
             <Image src={images.search} alt="search" width={20} height={20} /> 
           </div>
           <input type="text" placeholder="Search name and paste the address" />
-        </div>        
+        </div>
         <div className={Style.SearchToken_box_tokens}>
           {tokenList.map((el, i) => (
             <span 
               key={i + 1}
               className={active == i + 1 ? `${Style.active}`: ""}
               onClick={() => (
-                setActive(i + 1), tokens({
+                setActive(i + 1), tokens(prevState => ({
+                  ...prevState,
                   name: el.name,
-                  image: el.img, 
+                  image: el.img,
                   symbol: el.symbol,
                   tokenBalance: el.tokenBalance,
-                  tokenAddress: el.tokenAddress})
+                  tokenAddress: el
+                }))
               )}
             >
               <Image 

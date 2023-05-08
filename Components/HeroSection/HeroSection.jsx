@@ -6,7 +6,7 @@ import images from '../../assets';
 import { SwapTokenContext } from "../../Context/SwapContext";
 
 
-function HeroSection({}) {
+function HeroSection({ }) {
   const [openSetting, setOpenSetting] = useState(false);
   const [isOpenToken, setIsOpenToken] = useState(false); // rename openToken to isOpenToken
   const [openTokensTwo, setOpenTokensTwo] = useState(false);

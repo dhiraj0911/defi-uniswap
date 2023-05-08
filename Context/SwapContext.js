@@ -99,9 +99,8 @@ export const SwapTokenContextProvider = ({ children }) => {
 
   //Single Swap Token
   const singleSwapToken = async({token1, token2, swapAmount}) => {
-    console.log(token1.tokenAddress, token2.tokenAddress, swapAmount);
-    // console.log(token1, token2, swapAmount);
-    
+    console.log(token1.tokenAddress.tokenAddress, token2.tokenAddress.tokenAddress, swapAmount);
+
     try {
       let singleSwapToken;
       let weth;
@@ -114,7 +113,7 @@ export const SwapTokenContextProvider = ({ children }) => {
       const decimals0 = 18;
       const inputAmount = swapAmount;
       const amountIn = ethers.utils.parseUnits(
-        inputAmount.toString(),
+        inputAmount,
         decimals0
       );
 
@@ -132,18 +131,17 @@ export const SwapTokenContextProvider = ({ children }) => {
       const transaction =  await singleSwapToken.swapExactInputSingle(
         token1.tokenAddress.tokenAddress, 
         token2.tokenAddress.tokenAddress,
-        amountIn, {
-          gasLimit: 300000,
-        }
+        amountIn,
       );
       await transaction.wait();
-      console.log(transaction);
+      // console.log(transaction);
       
       const balance = await dai.balanceOf(account);
       const transferAmount = BigNumber.from(balance).toString();
       const ethValue = ethers.utils.formatEther(transferAmount);
       setDai(ethValue);
-      console.log("Dai balance: ", ethValue);
+      console.log(`${token2.name} Balance: ${ethValue}`);
+      // console.log(token2.tokenAddress.tokenBalance)
 
     } catch (error) {
       console.log(error) 
