@@ -13,7 +13,7 @@ export const LifeTokenAddress = "0x0c03eCB91Cb50835e560a7D52190EB1a5ffba797";
 export const LifeTokenABI = lifeToken.abi;
 
 //SINGLE SWAP TOKEN
-export const SingleSwapTokenAddress = "0xb04CB6c52E73CF3e2753776030CE85a36549c9C2";
+export const SingleSwapTokenAddress = "0x9D3DA37d36BB0B825CD319ed129c2872b893f538";
 export const SingleSwapTokenABI = singleSwapToken.abi;
 
 // SWAP MULTIHOP

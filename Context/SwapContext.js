@@ -29,8 +29,8 @@ export const SwapTokenContextProvider = ({ children }) => {
   const [account, setAccount] = useState("");
   const [ether, setEther] = useState("");
   const [networkConnect, setNetworkConnect] = useState("");
-  const [weth9, setWeth9] = useState("");
-  const [dai, setDai] = useState("");
+  const [weth9, setWeth9] = useState();
+  const [dai, setDai] = useState();
 
   const [tokenData, setTokenData] = useState([]);
   const [getAllLiquidity, setGetAllLiquidity] = useState([]);
@@ -131,13 +131,15 @@ export const SwapTokenContextProvider = ({ children }) => {
       const transaction =  await singleSwapToken.swapExactInputSingle(
         token1.tokenAddress.tokenAddress, 
         token2.tokenAddress.tokenAddress,
-        amountIn,
+        amountIn, {
+          gasLimit: 300000,
+        },
       );
       await transaction.wait();
       // console.log(transaction);
       
       const balance = await dai.balanceOf(account);
-      const transferAmount = BigNumber.from(balance).toString();
+      const transferAmount = BigNumber.from(balance);
       const ethValue = ethers.utils.formatEther(transferAmount);
       setDai(ethValue);
       console.log(`${token2.name} Balance: ${ethValue}`);
