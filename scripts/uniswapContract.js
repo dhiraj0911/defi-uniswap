@@ -45,8 +45,7 @@ async function main() {
         owner
     );
     weth = await Weth.deploy();
-
-    console.log('wethAddress', `${weth.address}`);
+    console.log('wethAddress = ', `'${weth.address}'`);
 
     Factory = new ContractFactory(
         artifacts.UniswapV3Factory.abi,
@@ -54,8 +53,8 @@ async function main() {
         owner
     );
     factory = await Factory.deploy();
-
-    console.log('factoryAddress', `${factory.address}`);
+    console.log('factoryAddress = ', `'${factory.address}'`);
+    
 
 
 
@@ -65,8 +64,8 @@ async function main() {
         owner
     );
     swapRouter = await SwapRouter.deploy(factory.address, weth.address);
-
-    console.log('swapRouterAddress', `${swapRouter.address}`);
+    console.log('swapRouterAddress = ', `'${swapRouter.address}'`);
+    
 
 
 
@@ -76,8 +75,8 @@ async function main() {
         owner
     );
     nftDescriptor = await NFTDescriptor.deploy();
+    console.log('nftDescriptorAddress = ', `'${nftDescriptor.address}'`);
 
-    console.log('nftDescriptorAddress', `${nftDescriptor.address}`);
 
 
 
@@ -106,8 +105,8 @@ async function main() {
         owner
     );
     nonfungibleTokenPositionDescriptor = await NonfungibleTokenPositionDescriptor.deploy(weth.address);
+    console.log('positionDescriptorAddress = ', `'${nonfungibleTokenPositionDescriptor.address}'`);
 
-    console.log('nonfungibleTokenPositionDescriptorAddress', `${nonfungibleTokenPositionDescriptor.address}`);
 
 
     NonfungiblePositionManager = new ContractFactory(
@@ -116,14 +115,7 @@ async function main() {
         owner
     );
     nonfungiblePositionManager = await NonfungiblePositionManager.deploy(factory.address, weth.address, nonfungibleTokenPositionDescriptor.address);
-    
-    
-    // console.log('wethAddress', `${weth.address}`);
-    // console.log('factoryAddress', `${factory.address}`);
-    // console.log('swapRouterAddress', `${swapRouter.address}`);
-    // console.log('nftDescriptorAddress', `${nftDescriptor.address}`);
-    // console.log('nonfungibleTokenPositionDescriptorAddress', `${nonfungibleTokenPositionDescriptor.address}`);
-    console.log('nonfungiblePositionManagerAddress', `${nonfungiblePositionManager.address}`);
+    console.log('positionManagerAddress = ', `'${nonfungiblePositionManager.address}'`);
 }
 
 
