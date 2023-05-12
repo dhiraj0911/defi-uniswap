@@ -14,12 +14,12 @@ async function main() {
   // console.log(`LIfe deployed to ${lifeToken.address}`);
 
   //SingleSwapToken
-  const SingleSwapToken = await hre.ethers.getContractFactory(
-    "SingleSwapToken"
-  );
-  const singleSwapToken = await SingleSwapToken.deploy();
-  await singleSwapToken .deployed();
-  console.log(`SingleSwapToken deployed to ${singleSwapToken.address}`);
+  // const SingleSwapToken = await hre.ethers.getContractFactory(
+  //   "SingleSwapToken"
+  // );
+  // const singleSwapToken = await SingleSwapToken.deploy();
+  // await singleSwapToken .deployed();
+  // console.log(`SingleSwapToken deployed to ${singleSwapToken.address}`);
 
   //SwapMultiHop
   // const SwapMultiHop = await hre.ethers.getContractFactory("SwapMultiHop");
@@ -28,12 +28,12 @@ async function main() {
   // console.log(`swapMultiHop deployed to ${swapMultiHop.address}`);
 
   //USER DATA CONTRACT
-  // const UserStorageData = await hre.ethers.getContractFactory(
-  //   "UserStorageData"
-  // );
-  // const userStorageData = await UserStorageData.deploy();
-  // await userStorageData.deployed();
-  // console.log(`UserStorageData deployed to ${userStorageData.address}`);
+  const UserStorageData = await hre.ethers.getContractFactory(
+    "UserStorageData"
+  );
+  const userStorageData = await UserStorageData.deploy();
+  await userStorageData.deployed();
+  console.log(`UserStorageData deployed to ${userStorageData.address}`);
 }
 
 main().catch((error) => {

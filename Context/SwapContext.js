@@ -3,7 +3,6 @@ import { ethers, BigNumber } from "ethers";
 import Web3Modal from "web3modal";
 import {Token, CurrencyAmount, TradeType, Percent} from "@uniswap/sdk-core"
 
-
 //INTERNAL IMPORT
 import {
   checkIfWalletConnected,
@@ -17,11 +16,15 @@ import {
   connectingWithMultiHopContract,
 } from "../Utils/appFeatures";
 
+import { getPrice } from "../Utils/fetchingPrice";
+import { swapUpdatePrice } from "../Utils/swapUpdatePrice";
+import { addLiquidityExternal } from "@/Utils/addLiquidity";
+import { getLiquidity } from "@/Utils/checkLiquidity";
+import { connectingWithPoolContract } from "@/Utils/deployPool";
+
 import { IWETHABI } from "./constants";
 import ERC20 from "./ERC20.json";
 
-import {getPrice} from "../Utils/fetchingPrice";
-import {swapUpdatePrice} from "../Utils/swapUpdatePrice";
 export const SwapTokenContext = React.createContext();
 
 export const SwapTokenContextProvider = ({ children }) => {
@@ -33,6 +36,7 @@ export const SwapTokenContextProvider = ({ children }) => {
   const [dai, setDai] = useState();
 
   const [tokenData, setTokenData] = useState([]);
+  
   const [getAllLiquidity, setGetAllLiquidity] = useState([]);
   //TOP TOKENS
   const [topTokensList, setTopTokensList] = useState([]);
@@ -65,6 +69,7 @@ export const SwapTokenContextProvider = ({ children }) => {
       const convertBal = BigNumber.from(balance).toString();
       const ethValue = ethers.utils.formatEther(convertBal);
       setEther(ethValue);
+
       //GET NETWORK
       const newtork = await provider.getNetwork();
       setNetworkConnect(newtork.name);
@@ -78,24 +83,92 @@ export const SwapTokenContextProvider = ({ children }) => {
         const tokenLeft = BigNumber.from(userBalance).toString();
         const convertTokenBal = ethers.utils.formatEther(tokenLeft);
         //GET NAME AND SYMBOL
-         const symbol = await contract.symbol();
+
+        const symbol = await contract.symbol();
         const name = await contract.name();
-          tokenData.push({
+        
+        tokenData.push({
           name: name,
           symbol: symbol,
           tokenBalance: convertTokenBal,
           tokenAddress: el,
         });
-        setTokenData(tokenData);
+        // setTokenData(tokenData);
       });
-    } catch (error) {
-      console.log(error);
+      
+      //get liquidity
+      const userStorageData = await connectingWithUserStorageContract();
+      const userLiquidity = await userStorageData.getAllFransactions()
+      console.log(userLiquidity);
+
+      userLiquidity.map(async(el, i) => {
+        const liquidityData = await getLiquidity(
+          el.poolAddress,
+          el.tokenAddress0,
+          el.tokenAddress1,
+        );
+
+        getAllLiquidity.push(liquidityData);
+        console.log(getAllLiquidity);
+      })
+    } catch (err) {
+      console.log(err);
     }
   };
 
   useEffect(() => {
     fetchingData();
   }, []);
+
+  //CREATE AND ADD LIQUIDITY
+  const createLiquidityAndPool = async ({
+    tokenAddress0,
+    tokenAddress1,
+    fee,
+    tokenPrice1,
+    tokenPrice2,
+    slippage,
+    deadline,
+    tokenAmmountOne,
+    tokenAmmountTwo,
+  }) => {
+    try {
+      //createPool
+      const createPool = await connectingWithPoolContract(
+        tokenAddress0,
+        tokenAddress1,
+        fee,
+        tokenPrice1,
+        tokenPrice2,
+        {
+          gasLimit: 500000,
+        }
+      );
+      const poolAddress = createPool;
+
+      //createLiquidity
+      const info = await addLiquidityExternal(
+        tokenAddress0,
+        tokenAddress1,
+        poolAddress,
+        fee,
+        tokenAmmountOne,
+        tokenAmmountTwo,
+      );
+      console.log(info);
+
+      //Add data
+      const userStorageData = await connectingWithUserStorageContract();
+      const userLiquidity = await userStorageData.addToBlockchain(
+        poolAddress,
+        tokenAddress0,
+        tokenAddress1,
+      );
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //Single Swap Token
   const singleSwapToken = async({token1, token2, swapAmount}) => {
@@ -157,6 +230,8 @@ export const SwapTokenContextProvider = ({ children }) => {
         connectWallet,
         getPrice,
         swapUpdatePrice,
+        createLiquidityAndPool,
+        getAllLiquidity,
         account,
         tokenData,
         networkConnect,

@@ -31,11 +31,5 @@ export const IWETHABI = IWETH.abi;
 // swapMultiHop deployed to 0x9A676e781A523b5d0C0e43731313A708CB607508
 
 
-// export const userStorageDataAddrss =
-//   "0xFCFE742e19790Dd67a627875ef8b45F17DB1DaC6";
-// export const userStorageDataABI = userStorgeData.abi;
-
-// BOO deployed to 0xc0c5618f0F3Fa66b496F2940f373DC366d765BAe
-// LIfe deployed to 0xa195ACcEB1945163160CD5703Ed43E4f78176a54
-// SingleSwapToken deployed to 0x6212cb549De37c25071cF506aB7E115D140D9e42
-// swapMultiHop deployed to 0x6F9679BdF5F180a139d01c598839a5df4860431b
+export const userStorageDataAddrss = "";
+export const userStorageDataABI = userStorgeData.abi;

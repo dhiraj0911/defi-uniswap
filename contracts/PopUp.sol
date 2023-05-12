@@ -5,9 +5,9 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract PopUp is ERC20, Ownable {
-    constructor() ERC20("PopUp", "POP") {}
     
-    function mint(address to, uint256 amount) public onlyOwner {
-        _mint(to, amount);
+    constructor() ERC20("PopUp", "POP"){
+        _mint(msg.sender, 800000 * 10 ** decimals());
     }
+    
 }

@@ -156,8 +156,8 @@ import {
   SwapMultiHopABI,
   IWETHAddress,
   IWETHABI,
-//   userStorageDataAddrss,
-//   userStorageDataABI,
+  userStorageDataAddrss,
+  userStorageDataABI,
 } from "../Context/constants";
 
 //CHECK IF WALLET IS CONNECT
@@ -293,13 +293,24 @@ export const connectingWithDAIToken = async () => {
   }
 };
 
-// //USER CONTRACT CONNECTION---------
-// export const fetchUserStorageContract = (signerOrProvider) =>
-//   new ethers.Contract(
-//     userStorageDataAddrss,
-//     userStorageDataABI,
-//     signerOrProvider
-//   );
+//USER CONTRACT CONNECTION---------
+
+export const fetchUserStorageContract = (signerOrProvider) =>
+  new ethers.Contract(userStorageDataAddrss, userStorageDataABI, signerOrProvider);
+
+//CONNECTING With SingleSwapToken TOKEN CONTRACT
+export const connectingWithUserStorageContract = async () => {
+  try {
+    const web3modal = new Web3Modal();
+    const connection = await web3modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+    const contract = fetchUserStorageContract(signer);
+    return contract;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // //CONNECTING With SingleSwapToken TOKEN CONTRACT
 // export const connectingWithUserStorageContract = async () => {
