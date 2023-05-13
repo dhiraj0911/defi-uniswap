@@ -26,7 +26,7 @@ export default {
   lock,
   // question,
   // arrowPrice,
-  // wallet,
+  wallet,
   // arrowLeft,
   // tick,
   loading,

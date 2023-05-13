@@ -32,14 +32,14 @@ export const SwapTokenContextProvider = ({ children }) => {
   const [account, setAccount] = useState("");
   const [ether, setEther] = useState("");
   const [networkConnect, setNetworkConnect] = useState("");
-  const [weth9, setWeth9] = useState();
-  const [dai, setDai] = useState();
+  const [weth9, setWeth9] = useState("");
+  const [dai, setDai] = useState("");
 
   const [tokenData, setTokenData] = useState([]);
-  
   const [getAllLiquidity, setGetAllLiquidity] = useState([]);
+  
   //TOP TOKENS
-  const [topTokensList, setTopTokensList] = useState([]);
+  // const [topTokensList, setTopTokensList] = useState([]);
 
   const addToken = [
     // "0x44863F234b137A395e5c98359d16057A9A1fAc55",
@@ -75,42 +75,42 @@ export const SwapTokenContextProvider = ({ children }) => {
       setNetworkConnect(newtork.name);
 
       //ALL TOKEN BALANCE AND DATA
-      addToken.map(async (el, i) => {
-        //GETTING CONTRACT
-        const contract = new ethers.Contract(el, ERC20.abi, provider);
-        //GETTING BALANCE OF TOKEN
-        const userBalance = await contract.balanceOf(userAccount);
-        const tokenLeft = BigNumber.from(userBalance).toString();
-        const convertTokenBal = ethers.utils.formatEther(tokenLeft);
-        //GET NAME AND SYMBOL
+      // addToken.map(async (el, i) => {
+      //   //GETTING CONTRACT
+      //   const contract = new ethers.Contract(el, ERC20.abi, provider);
+      //   //GETTING BALANCE OF TOKEN
+      //   const userBalance = await contract.balanceOf(userAccount);
+      //   const tokenLeft = BigNumber.from(userBalance).toString();
+      //   const convertTokenBal = ethers.utils.formatEther(tokenLeft);
+      //   //GET NAME AND SYMBOL
 
-        const symbol = await contract.symbol();
-        const name = await contract.name();
+      //   const symbol = await  contract.symbol();
+      //   const name = await contract.name();
         
-        tokenData.push({
-          name: name,
-          symbol: symbol,
-          tokenBalance: convertTokenBal,
-          tokenAddress: el,
-        });
-        // setTokenData(tokenData);
-      });
+      //   tokenData.push({
+      //     name: name,
+      //     symbol: symbol,
+      //     tokenBalance: convertTokenBal,
+      //     tokenAddress: el,
+      //   });
+      //   // setTokenData(tokenData);
+      // });
       
-      //get liquidity
-      const userStorageData = await connectingWithUserStorageContract();
-      const userLiquidity = await userStorageData.getAllFransactions()
-      console.log(userLiquidity);
+      // //get liquidity
+      // const userStorageData = await connectingWithUserStorageContract();
+      // const userLiquidity = await userStorageData.getAllTransactions()
+      // console.log(userLiquidity);
 
-      userLiquidity.map(async(el, i) => {
-        const liquidityData = await getLiquidity(
-          el.poolAddress,
-          el.tokenAddress0,
-          el.tokenAddress1,
-        );
+      // userLiquidity.map(async(el, i) => {
+      //   const liquidityData = await getLiquidity(
+      //     el.poolAddress,
+      //     el.tokenAddress0,
+      //     el.tokenAddress1,
+      //   );
 
-        getAllLiquidity.push(liquidityData);
-        console.log(getAllLiquidity);
-      })
+      //   getAllLiquidity.push(liquidityData);
+      //   console.log(getAllLiquidity);
+      // })
     } catch (err) {
       console.log(err);
     }
@@ -145,7 +145,7 @@ export const SwapTokenContextProvider = ({ children }) => {
         }
       );
       const poolAddress = createPool;
-
+      
       //createLiquidity
       const info = await addLiquidityExternal(
         tokenAddress0,

@@ -6,7 +6,7 @@ import Style from './PoodAdd.module.css';
 
 import {Token, SearchToken} from '../../Components/index';
 
-const PoolAdd = () => {
+const PoolAdd = ({account, setclosePool,tokenData, createLiquidityAndPool}) => {
     const [openModel, setOpenModel] = useState(false);
     const [openTokenModel, setOpenTokenModel] = useState(false);
     const [active, setActive] = useState(1);
@@ -31,6 +31,28 @@ const PoolAdd = () => {
         },
     ];
 
+//new state
+    const [fee, setFee] = useState(0);
+    const [slippage, setslippage] = useState(25);
+    const [deadline, setDeadline] = useState(10);
+    const [tokenAmountOne, setTokenAmountOne] = useState(0);
+    const [tokenAmountTwo, setTokenAmountTwo] = useState(0);
+  //Token 1
+  const [tokenOne, setTokenOne] = useState({
+    name: "",
+    image:"",
+    symbol: "",
+    tokenBalance: "",
+    tokenAddress: "",
+  });
+  //Token 2
+  const [tokenTwo, setTokenTwo] = useState({
+    name: "",
+    image:"",
+    symbol: "",
+    tokenBalance: "",
+    tokenAddress: "",
+  });
     const minPriceRange = (text) => {
         if(text == "+") {
             setMinPrice(minPrice + 1);

@@ -4,12 +4,12 @@ import {Token} from "@uniswap/sdk-core";
 import { Pool, Position, nearestUsableTick } from "@uniswap/v3-sdk";
 
 //Uniswap contracts
-wethAddress =  '0xb04CB6c52E73CF3e2753776030CE85a36549c9C2'
-factoryAddress =  '0xc0c5618f0F3Fa66b496F2940f373DC366d765BAe'
-swapRouterAddress =  '0xa195ACcEB1945163160CD5703Ed43E4f78176a54'
-nftDescriptorAddress =  '0x6212cb549De37c25071cF506aB7E115D140D9e42'
-positionDescriptorAddress =  '0x6F9679BdF5F180a139d01c598839a5df4860431b'
-positionManagerAddress =  '0xf4AE7E15B1012edceD8103510eeB560a9343AFd3'
+const wethAddress = '0xb04CB6c52E73CF3e2753776030CE85a36549c9C2'
+const factoryAddress = '0xc0c5618f0F3Fa66b496F2940f373DC366d765BAe'
+const swapRouterAddress = '0xa195ACcEB1945163160CD5703Ed43E4f78176a54'
+const nftDescriptorAddress = '0x6212cb549De37c25071cF506aB7E115D140D9e42'
+const positionDescriptorAddress = '0x6F9679BdF5F180a139d01c598839a5df4860431b'
+const positionManagerAddress = '0xf4AE7E15B1012edceD8103510eeB560a9343AFd3'
 
 const artifacts = {
     NonfungiblePositionManager: require('@uniswap/v3-periphery/artifacts/contracts/NonfungiblePositionManager.sol/NonfungiblePositionManager.json'),
