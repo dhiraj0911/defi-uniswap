@@ -5,22 +5,22 @@ import Web3Modal from "web3modal";
 const bn = require("bignumber.js");
 bn.config({EXPONENTIAL_AT: 999999, DECIMAL_PLACES: 40});
 
-const UNISWAP_V3_FACTORY_ADDRESS =  '0xc0c5618f0F3Fa66b496F2940f373DC366d765BAe'
+const UNISWAP_V3_FACTORY_ADDRESS =  '0x6212cb549De37c25071cF506aB7E115D140D9e42'
+const NON_FUNGABLE_MANAGER =  '0xc981ec845488b8479539e6B22dc808Fb824dB00a'
 
-const NON_FUNGABLE_MANAGER =  '0xf4AE7E15B1012edceD8103510eeB560a9343AFd3'
 const artifacts = {
     UniswapV3Factory: require('@uniswap/v3-core/artifacts/contracts/UniswapV3Factory.sol/UniswapV3Factory.json'),
     NonfungiblePositionManager: require('@uniswap/v3-periphery/artifacts/contracts/NonfungiblePositionManager.sol/NonfungiblePositionManager.json'),
 };
 
-export const fetchPoolContract = (signerOrProvider) =>
+export const fetchPoolContract = async(signerOrProvider) =>
     new ethers.Contract(
         UNISWAP_V3_FACTORY_ADDRESS,
         artifacts.UniswapV3Factory.abi,
         signerOrProvider
     );
 
-export const fetchPositionContract = (signerOrProvider) =>
+export const fetchPositionContract = async (signerOrProvider) =>
     new ethers.Contract(
         NON_FUNGABLE_MANAGER,
         artifacts.NonfungiblePositionManager.abi,
@@ -52,20 +52,22 @@ export const connectingWithPoolContract = async (
     const signer = provider.getSigner();
     
 
-    console.log(signer);
+    console.log("hi1");
 
     const createPoolContract = await fetchPositionContract(signer);
+    console.log("hi2");
     const price = encodePriceSqrt(tokenFee1, tokenFee2);
-    console.log(price);
+    console.log("hi3");
     const transaction = await createPoolContract
         .connect(signer)
         .createAndInitializePoolIfNecessary(address1, address2, fee, price, {
             gasLimit: 30000000,
         });
     await transaction.wait();
+    console.log("hi4");
 
     const factory = await fetchPoolContract(signer);
     const poolAddress = await factory.getPool(address1, address2, fee);
-     
+    console.log("hi5>>>");
     return poolAddress;
 }

@@ -298,7 +298,7 @@ export const connectingWithDAIToken = async () => {
 export const fetchUserStorageContract = (signerOrProvider) =>
   new ethers.Contract(userStorageDataAddrss, userStorageDataABI, signerOrProvider);
 
-//CONNECTING With SingleSwapToken TOKEN CONTRACT
+
 export const connectingWithUserStorageContract = async () => {
   try {
     const web3modal = new Web3Modal();

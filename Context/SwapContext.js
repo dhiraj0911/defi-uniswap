@@ -42,16 +42,9 @@ export const SwapTokenContextProvider = ({ children }) => {
   // const [topTokensList, setTopTokensList] = useState([]);
 
   const addToken = [
-    // "0x44863F234b137A395e5c98359d16057A9A1fAc55",
-    // "0x0c03eCB91Cb50835e560a7D52190EB1a5ffba797"
-    "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-    "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-    "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
-    "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-    "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
-    "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
-    "0x514910771AF9Ca656af840dff83E8264EcF986CA",
-    "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "0x5E5713a0d915701F464DEbb66015adD62B2e6AE9",
+    "0x97fd63D049089cd70D9D139ccf9338c81372DE68",
+    "0xC0BF43A4Ca27e0976195E6661b099742f10507e5",
   ];
 
   //FETCH DATA
@@ -75,42 +68,41 @@ export const SwapTokenContextProvider = ({ children }) => {
       setNetworkConnect(newtork.name);
 
       //ALL TOKEN BALANCE AND DATA
-      // addToken.map(async (el, i) => {
-      //   //GETTING CONTRACT
-      //   const contract = new ethers.Contract(el, ERC20.abi, provider);
-      //   //GETTING BALANCE OF TOKEN
-      //   const userBalance = await contract.balanceOf(userAccount);
-      //   const tokenLeft = BigNumber.from(userBalance).toString();
-      //   const convertTokenBal = ethers.utils.formatEther(tokenLeft);
-      //   //GET NAME AND SYMBOL
+      addToken.map(async (el, i) => {
+        //GETTING CONTRACT
+        const contract = new ethers.Contract(el, ERC20.abi, provider);
+        //GETTING BALANCE OF TOKEN
+        const userBalance = await contract.balanceOf(userAccount);
+        const tokenLeft = BigNumber.from(userBalance).toString();
+        const convertTokenBal = ethers.utils.formatEther(tokenLeft);
+        //GET NAME AND SYMBOL
 
-      //   const symbol = await  contract.symbol();
-      //   const name = await contract.name();
+        const symbol = await  contract.symbol();
+        const name = await contract.name();
         
-      //   tokenData.push({
-      //     name: name,
-      //     symbol: symbol,
-      //     tokenBalance: convertTokenBal,
-      //     tokenAddress: el,
-      //   });
-      //   // setTokenData(tokenData);
-      // });
+        tokenData.push({
+          name: name,
+          symbol: symbol,
+          tokenBalance: convertTokenBal,
+          tokenAddress: el,
+        });
+        // setTokenData(tokenData);
+      });
       
-      // //get liquidity
-      // const userStorageData = await connectingWithUserStorageContract();
-      // const userLiquidity = await userStorageData.getAllTransactions()
+      // get liquidity
+      const userStorageData = await connectingWithUserStorageContract();
+      const userLiquidity = await userStorageData.getAllTransactions();
       // console.log(userLiquidity);
-
-      // userLiquidity.map(async(el, i) => {
-      //   const liquidityData = await getLiquidity(
-      //     el.poolAddress,
-      //     el.tokenAddress0,
-      //     el.tokenAddress1,
-      //   );
-
-      //   getAllLiquidity.push(liquidityData);
-      //   console.log(getAllLiquidity);
-      // })
+      userLiquidity.map(async(el, i) => {
+        const liquidityData = await getLiquidity(
+          el.poolAddress,
+          el.tokenAddress0,
+          el.tokenAddress1,
+        );
+        getAllLiquidity.push(liquidityData);
+      });
+      // setGetAllLiquidity(getAllLiquidity);
+      // console.log(getAllLiquidity);
     } catch (err) {
       console.log(err);
     }
@@ -129,11 +121,20 @@ export const SwapTokenContextProvider = ({ children }) => {
     tokenPrice2,
     slippage,
     deadline,
-    tokenAmmountOne,
-    tokenAmmountTwo,
+    tokenAmountOne,
+    tokenAmountTwo,
   }) => {
     try {
       //createPool
+      console.log(tokenAddress0,
+        tokenAddress1,
+        fee,
+        tokenPrice1,
+        tokenPrice2,
+        slippage,
+        deadline,
+        tokenAmountOne,
+        tokenAmountTwo);
       const createPool = await connectingWithPoolContract(
         tokenAddress0,
         tokenAddress1,
@@ -145,6 +146,9 @@ export const SwapTokenContextProvider = ({ children }) => {
         }
       );
       const poolAddress = createPool;
+      console.log("Connected to pool")
+      console.log("poolAddress", poolAddress);
+
       
       //createLiquidity
       const info = await addLiquidityExternal(
@@ -152,11 +156,11 @@ export const SwapTokenContextProvider = ({ children }) => {
         tokenAddress1,
         poolAddress,
         fee,
-        tokenAmmountOne,
-        tokenAmmountTwo,
+        tokenAmountOne,
+        tokenAmountTwo,
       );
+      console.log("added liquidity")
       console.log(info);
-
       //Add data
       const userStorageData = await connectingWithUserStorageContract();
       const userLiquidity = await userStorageData.addToBlockchain(
@@ -164,6 +168,8 @@ export const SwapTokenContextProvider = ({ children }) => {
         tokenAddress0,
         tokenAddress1,
       );
+      console.log("saved to blockchain");
+
 
     } catch (error) {
       console.log(error);

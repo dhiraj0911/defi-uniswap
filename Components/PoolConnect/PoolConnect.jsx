@@ -3,15 +3,16 @@ import Image from "next/image";
 
 import Style from "./PoolConnect.module.css"
 import images from "../../assets"
-import { getLiquidity } from "@/Utils/checkLiquidity";
+// import { getLiquidity } from "@/Utils/checkLiquidity";
 
-const PoolConnect = ({setclosePool, createLiquidityAndPool, account}) => {
-    console.log(getLiquidity);
+const PoolConnect = ({setclosePool, getAllLiquidity,account}) => {
 
     let tokenList = [];
-    for (let i = 0; i < getLiquidity.length; i++) {
-        if (i % 2 == 1) tokenList.push(getLiquidity[i]);
+    for (let i = 0; i < getAllLiquidity.length; i++) {
+        if (i % 2 == 1) tokenList.push(getAllLiquidity[i]);
     }
+    
+    console.log(tokenList);
     return (
         <div className={Style.PoolConnect}>
             <div className={Style.PoolConnect_box}>
@@ -32,7 +33,7 @@ const PoolConnect = ({setclosePool, createLiquidityAndPool, account}) => {
                             <p>Your Position {tokenList.length}</p>
                         </div>
 
-                        {tokenList.map((el, i) => (
+                        {/* {tokenList.map((el, i) => (
                             <div className={Style.PoolConnect_box_liquidity_box}>
                                 <div className={Style.PoolConnect_box_liquidity_list}>
                                     <p>
@@ -64,7 +65,7 @@ const PoolConnect = ({setclosePool, createLiquidityAndPool, account}) => {
                                     </p>
                                 </div>
                             </div>
-                        ))}
+                        ))} */}
                     </div>
                 )}
 

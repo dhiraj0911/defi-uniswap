@@ -6,7 +6,7 @@ import Style from "../styles/Pool.module.css";
 import images from "../assets";
 
 import {PoolAdd, PoolConnect} from "../components/index";
-import { SwapTokenContext } from "@/Context/SwapContext";
+import { SwapTokenContext } from "../Context/SwapContext";
 
 // usecontext
 import { useContext } from "react";
@@ -26,7 +26,8 @@ const Pool = () => {
             ): (
                 <PoolConnect 
                     setclosePool={setclosePool}
-                    createLiquidityAndPool={createLiquidityAndPool}
+                    // createLiquidityAndPool={createLiquidityAndPool}
+                    getAllLiquidity={getAllLiquidity}
                     account={account}
                 />
             )}
