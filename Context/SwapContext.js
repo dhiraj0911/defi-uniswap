@@ -101,7 +101,7 @@ export const SwapTokenContextProvider = ({ children }) => {
         );
         getAllLiquidity.push(liquidityData);
       });
-      // setGetAllLiquidity(getAllLiquidity);
+      setGetAllLiquidity(getAllLiquidity);
       // console.log(getAllLiquidity);
     } catch (err) {
       console.log(err);

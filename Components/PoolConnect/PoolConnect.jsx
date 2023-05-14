@@ -21,7 +21,7 @@ const PoolConnect = ({setclosePool, getAllLiquidity,account}) => {
                     <p onClick={() => setclosePool(true)}>+ New Position</p>
                 </div>
 
-                {account? (
+                {!account? (
                     <div className={Style.PoolConnect_box_Middle}>
                         <Image src={images.wallet} alt="wallet" height={80} width={80} />
                         <p>Your active V3 liquidity positions will appear here.</p>
@@ -33,7 +33,7 @@ const PoolConnect = ({setclosePool, getAllLiquidity,account}) => {
                             <p>Your Position {tokenList.length}</p>
                         </div>
 
-                        {/* {tokenList.map((el, i) => (
+                        {tokenList.map((el, i) => (
                             <div className={Style.PoolConnect_box_liquidity_box}>
                                 <div className={Style.PoolConnect_box_liquidity_list}>
                                     <p>
@@ -65,7 +65,7 @@ const PoolConnect = ({setclosePool, getAllLiquidity,account}) => {
                                     </p>
                                 </div>
                             </div>
-                        ))} */}
+                        ))}
                     </div>
                 )}
 
