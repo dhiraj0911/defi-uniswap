@@ -6,12 +6,12 @@ popUpAddress = '0x5E5713a0d915701F464DEbb66015adD62B2e6AE9'
 DHI_RAY =  "0x649d835A6FEC76983dA89F768928019E5734820c"
 
 //Uniswap contracts
-wethAddress =  '0xb04CB6c52E73CF3e2753776030CE85a36549c9C2'
-factoryAddress =  '0xc0c5618f0F3Fa66b496F2940f373DC366d765BAe'
-swapRouterAddress =  '0xa195ACcEB1945163160CD5703Ed43E4f78176a54'
-nftDescriptorAddress =  '0x6212cb549De37c25071cF506aB7E115D140D9e42'
-positionDescriptorAddress =  '0x6F9679BdF5F180a139d01c598839a5df4860431b'
-positionManagerAddress =  '0xf4AE7E15B1012edceD8103510eeB560a9343AFd3'
+wethAddress =  '0x021DBfF4A864Aa25c51F0ad2Cd73266Fde66199d'
+factoryAddress =  '0x4CF4dd3f71B67a7622ac250f8b10d266Dc5aEbcE'
+swapRouterAddress =  '0x2498e8059929e18e2a2cED4e32ef145fa2F4a744'
+nftDescriptorAddress =  '0x447786d977Ea11Ad0600E193b2d07A06EfB53e5F'
+positionDescriptorAddress =  '0x6DcBc91229d812910b54dF91b5c2b592572CD6B0'
+positionManagerAddress =  '0x245e77E56b1514D77910c9303e4b44dDb44B788c'
 
 const artifacts = {
     NonfungiblePositionManager: require('@uniswap/v3-periphery/artifacts/contracts/NonfungiblePositionManager.sol/NonfungiblePositionManager.json'),

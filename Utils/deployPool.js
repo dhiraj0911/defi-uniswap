@@ -5,8 +5,8 @@ import Web3Modal from "web3modal";
 const bn = require("bignumber.js");
 bn.config({EXPONENTIAL_AT: 999999, DECIMAL_PLACES: 40});
 
-const UNISWAP_V3_FACTORY_ADDRESS =  '0x6212cb549De37c25071cF506aB7E115D140D9e42'
-const NON_FUNGABLE_MANAGER =  '0xc981ec845488b8479539e6B22dc808Fb824dB00a'
+const UNISWAP_V3_FACTORY_ADDRESS =  '0x6F9679BdF5F180a139d01c598839a5df4860431b'
+const NON_FUNGABLE_MANAGER =  '0x5E5713a0d915701F464DEbb66015adD62B2e6AE9'
 
 const artifacts = {
     UniswapV3Factory: require('@uniswap/v3-core/artifacts/contracts/UniswapV3Factory.sol/UniswapV3Factory.json'),

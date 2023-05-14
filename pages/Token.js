@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Image from "next/image";
 
 import Style from "../styles/Token.module.css";
 import images from "../assets";
 import {AllTokens} from "../components/index";
+import { SwapTokenContext } from "../Context/SwapContext";
 
 
 const Tokens = () => {
@@ -49,6 +50,9 @@ const Tokens = () => {
             volume: '0.00',
         },
     ]);
+
+    const { topTokensList } = useContext(SwapTokenContext);
+
 
     const [copyAllTokenList, setCopyAllTokenList] = useState(allTokenList);
     const [search, setSearch] = useState("");
@@ -113,7 +117,7 @@ const Tokens = () => {
                         />    
                     </div>         
                 </div>
-                <AllTokens allTokenList={allTokenList} />
+                <AllTokens allTokenList={topTokensList} />
             </div>
         </div>
     );

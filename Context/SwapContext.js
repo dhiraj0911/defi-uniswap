@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ethers, BigNumber } from "ethers";
 import Web3Modal from "web3modal";
 import {Token, CurrencyAmount, TradeType, Percent} from "@uniswap/sdk-core"
+import axios from "axios";
 
 //INTERNAL IMPORT
 import {
@@ -39,12 +40,19 @@ export const SwapTokenContextProvider = ({ children }) => {
   const [getAllLiquidity, setGetAllLiquidity] = useState([]);
   
   //TOP TOKENS
-  // const [topTokensList, setTopTokensList] = useState([]);
+  const [topTokensList, setTopTokensList] = useState([]);
 
   const addToken = [
-    "0x5E5713a0d915701F464DEbb66015adD62B2e6AE9",
-    "0x97fd63D049089cd70D9D139ccf9338c81372DE68",
-    "0xC0BF43A4Ca27e0976195E6661b099742f10507e5",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+    "0x6b175474e89094c44da98b954eedeac495271d0f",
+    "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+    "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+    "0x9D3DA37d36BB0B825CD319ed129c2872b893f538",
+    "0x59C4e2c6a6dC27c259D6d067a039c831e1ff4947",
+    "0x9d136eEa063eDE5418A6BC7bEafF009bBb6CFa70"
   ];
 
   //FETCH DATA
@@ -100,9 +108,35 @@ export const SwapTokenContextProvider = ({ children }) => {
           el.tokenAddress1,
         );
         getAllLiquidity.push(liquidityData);
+        console.log(getAllLiquidity);
       });
-      setGetAllLiquidity(getAllLiquidity);
-      // console.log(getAllLiquidity);
+
+      const URL = "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3";
+
+      const query = `
+      {
+        tokens(orderBy:volumeUSD, orderDirection:desc, first:20) {
+          id
+          name
+          symbol
+          decimals
+          volume
+          volumeUSD
+          totalSupply
+          feesUSD
+          txCount
+          poolCount
+          totalValueLockedUSD
+          totalValueLocked
+          derivedETH
+        }
+      }
+    `;
+    const axiosData = await axios.post(URL, { query: query });
+    console.log(axiosData.data.data.tokens)
+    setTopTokensList(axiosData.data.data.tokens);
+
+
     } catch (err) {
       console.log(err);
     }
@@ -134,7 +168,8 @@ export const SwapTokenContextProvider = ({ children }) => {
         slippage,
         deadline,
         tokenAmountOne,
-        tokenAmountTwo);
+        tokenAmountTwo
+      );
       const createPool = await connectingWithPoolContract(
         tokenAddress0,
         tokenAddress1,
@@ -145,6 +180,7 @@ export const SwapTokenContextProvider = ({ children }) => {
           gasLimit: 500000,
         }
       );
+      
       const poolAddress = createPool;
       console.log("Connected to pool")
       console.log("poolAddress", poolAddress);
@@ -244,6 +280,7 @@ export const SwapTokenContextProvider = ({ children }) => {
         weth9,
         dai,
         ether,
+        topTokensList
       }}
     >
       {children}
